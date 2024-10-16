@@ -58,7 +58,25 @@
 
 
   cw3.addEventListener("click", function () {
-    //TODO
-  })
-
+    answer.innerHTML = "Processing...";
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({
+        title: "Nowy post",
+        body: "Treść nowego posta",
+        userId: 1,
+      }),
+    })
+      .then((response) => response.json())
+      .then((post) => {
+        answer.innerHTML = `Dodano nowy post o ID = ${post.id}`;
+      })
+      .catch((error) => {
+        answer.innerHTML = "Błąd podczas dodawania nowego posta";
+        console.error("Błąd:", error);
+      });
+  });
 })();
