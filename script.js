@@ -38,8 +38,24 @@
 
 
   cw2.addEventListener("click", function () {
-    //TODO
-  })
+    fetch("https://jsonplaceholder.typicode.com/posts/1")
+      .then((response) => response.json())
+      .then((post) => {
+        let html = "<ul>";
+        html += `
+          <li>
+            <h3>${post.title}</h3>
+            <p>${post.body}</p>
+          </li>
+        `;
+        html += "</ul>";
+        answer.innerHTML = html;
+      })
+      .catch((error) => {
+        console.error("Błąd:", error);
+      });
+  });
+
 
   cw3.addEventListener("click", function () {
     //TODO
