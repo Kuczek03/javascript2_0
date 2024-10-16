@@ -4,10 +4,18 @@
   const cw2 = document.getElementById('cw2')
   const cw3 = document.getElementById('cw3')
   const answer = document.getElementById('answer')
-  var style = document.createElement('style');
-  document.head.appendChild(style);
-  style.textContent = "body { background-color: #aaaaa; }";
+  const loadingPopup = document.getElementById("loading-popup");
+
+  function showLoading() {
+    loadingPopup.style.display = "block";
+  }
+
+  function hideLoading() {
+    loadingPopup.style.display = "none";
+  }
+
   example.addEventListener("click", function () {
+    showLoading();
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
       .then(array => {
@@ -17,10 +25,12 @@
   })
 
   cw1.addEventListener("click", function () {
+    showLoading();
     answer.innerHTML = "Loading...";
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((posts) => {
+        hideLoading();
         console.log(posts);
         let html = "<ul>";
         posts.forEach((post) => {
@@ -35,15 +45,18 @@
         answer.innerHTML = html;
       })
       .catch((error) => {
+        hideLoading();
         console.error("Błąd:", error);
       });
   });
 
 
   cw2.addEventListener("click", function () {
+    showLoading();
     fetch("https://jsonplaceholder.typicode.com/posts/1")
       .then((response) => response.json())
       .then((post) => {
+        hideLoading();
         console.log(post);
         let html = "<ul>";
         html += `
@@ -56,12 +69,14 @@
         answer.innerHTML = html;
       })
       .catch((error) => {
+        hideLoading();
         console.error("Błąd:", error);
       });
   });
 
 
   cw3.addEventListener("click", function () {
+    showLoading();
     answer.innerHTML = "Processing...";
     fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
@@ -74,20 +89,18 @@
         userId: 1,
       }),
     })
+      
       .then((response) => response.json())
       .then((post) => {
+        hideLoading();
         console.log(post);
         answer.innerHTML = `Dodano nowy post o ID = ${post.id}`;
       })
       .catch((error) => {
         answer.innerHTML = "Błąd podczas dodawania nowego posta";
         console.error("Błąd:", error);
+        hideLoading();
       });
   });
-
-  function changeStyle() {
-    var element = document.getElementById("myElement");
-    element.style.backgroundColor = "blue";
-  };
   
 })();
