@@ -21,6 +21,7 @@
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((posts) => {
+        console.log(posts);
         let html = "<ul>";
         posts.forEach((post) => {
           html += `
@@ -43,6 +44,7 @@
     fetch("https://jsonplaceholder.typicode.com/posts/1")
       .then((response) => response.json())
       .then((post) => {
+        console.log(post);
         let html = "<ul>";
         html += `
           <li>
@@ -74,6 +76,7 @@
     })
       .then((response) => response.json())
       .then((post) => {
+        console.log(post);
         answer.innerHTML = `Dodano nowy post o ID = ${post.id}`;
       })
       .catch((error) => {
