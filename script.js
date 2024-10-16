@@ -4,7 +4,9 @@
   const cw2 = document.getElementById('cw2')
   const cw3 = document.getElementById('cw3')
   const answer = document.getElementById('answer')
-
+  var style = document.createElement('style');
+  document.head.appendChild(style);
+  style.textContent = "body { background-color: #aaaaa; }";
   example.addEventListener("click", function () {
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
@@ -79,4 +81,10 @@
         console.error("Błąd:", error);
       });
   });
+
+  function changeStyle() {
+    var element = document.getElementById("myElement");
+    element.style.backgroundColor = "blue";
+  };
+  
 })();
