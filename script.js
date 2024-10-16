@@ -15,8 +15,26 @@
   })
 
   cw1.addEventListener("click", function () {
-    //TODO
-  })
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((posts) => {
+        let html = "<ul>";
+        posts.forEach((post) => {
+          html += `
+            <li>
+              <h3>${post.title}</h3>
+              <p>${post.body}</p>
+            </li>
+          `;
+        });
+        html += "</ul>";
+        answer.innerHTML = html;
+      })
+      .catch((error) => {
+        console.error("Błąd:", error);
+      });
+  });
+
 
   cw2.addEventListener("click", function () {
     //TODO
