@@ -104,3 +104,27 @@
   });
   
 })();
+
+fetch('https://my-json-server.typicode.com/Kuczek03/javascript2_0/db')
+.then(response => response.json())
+.then(data => {
+  console.log('Dane pobrane:', data);
+  // Możesz teraz przetwarzać dane, np. wyświetlić posty i komentarze
+})
+.catch(error => {
+  console.error('Błąd podczas pobierania danych:', error);
+});
+
+fetch('https://my-json-server.typicode.com/Kuczek03/javascript2_0/db')
+.then(response => response.json())
+.then(data => {
+  data.posts.forEach(post => {
+    console.log('Post:', post.title);
+    post.comments.forEach(comment => {
+      console.log('Komentarz:', comment.text);
+    });
+  });
+})
+.catch(error => {
+  console.error('Błąd podczas pobierania danych:', error);
+});
