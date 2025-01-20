@@ -109,7 +109,6 @@ fetch('https://my-json-server.typicode.com/Kuczek03/javascript2_0/db')
 .then(response => response.json())
 .then(data => {
   console.log('Dane pobrane:', data);
-  // Możesz teraz przetwarzać dane, np. wyświetlić posty i komentarze
 })
 .catch(error => {
   console.error('Błąd podczas pobierania danych:', error);
@@ -124,6 +123,16 @@ fetch('https://my-json-server.typicode.com/Kuczek03/javascript2_0/db')
       console.log('Komentarz:', comment.text);
     });
   });
+})
+.catch(error => {
+  console.error('Błąd podczas pobierania danych:', error);
+});
+
+
+fetch('https://my-json-server.typicode.com/trak2025zz/json-server/posts')
+.then(response => response.json())
+.then(data => {
+  console.log('Dane pobrane z trak2025zz/json-server/posts:', data);
 })
 .catch(error => {
   console.error('Błąd podczas pobierania danych:', error);
